@@ -1,0 +1,19 @@
+<ion-view title="offers"> 
+<div ng-controller="offerListController">
+	<ion-header-bar class="bar-secondary">
+		<h1 class="title">Offers</h1>
+		<button class="button button-balanced" type="button" ng-click="createOffer()">Create New</button>
+		</ion-header-bar> 
+	<ion-content>
+		<div ng-repeat="offer in offers">
+			<div class="list">
+				<a class="item" ng-click="editOffer({{offer.id}})">
+					<h2>{{offer.user.firstName + " " + offer.user.lastName |
+						strLimit:25}}</h2>
+					<p>{{offer.offerDetails | strLimit:40}}</p>
+				</a>
+			</div>
+		</div>
+	</ion-content> 
+</div>
+</ion-view>
