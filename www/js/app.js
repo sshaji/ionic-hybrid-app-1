@@ -12,6 +12,16 @@
 				$scope.offers = [];
 			});
 		};
+		$scope.doRefresh = function() {
+			offerFactory.getOffers().then(function(response) {
+				$scope.offers = response.data;
+				$scope.$broadcast('scroll.refreshComplete');
+			}, function(response) {
+				messageHandler.showStatus("Error retrieving offers : " + response.statusText + " - " + response.data.error, false);
+				$scope.offers = [];
+				$scope.$broadcast('scroll.refreshComplete');
+			});
+		};
 		$scope.setUser = function() {
 			var promise = userFactory.me();
 			promise.then(function(response) {
